@@ -10,10 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etDisplay;
+    private static final int MAX_DIGITS = 10; // Límite de dígitos
 
     // Variables lógicas
     private double firstValue = 0;
-    private double memoryValue = 0; // Aquí se guarda la memoria
+    private double memoryValue = 0;
     private String operation = "";
     private boolean isNewOp = true;
 
@@ -23,18 +24,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         etDisplay = findViewById(R.id.etDisplay);
-        // Desactivar teclado del sistema
         etDisplay.setShowSoftInputOnFocus(false);
 
         // --- 1. CONFIGURACIÓN NÚMEROS (0-9) ---
-        // Asignamos el mismo Listener a todos para ahorrar código
         View.OnClickListener numListener = v -> {
             Button b = (Button) v;
             if (isNewOp) {
                 etDisplay.setText("");
                 isNewOp = false;
             }
-            etDisplay.append(b.getText().toString());
+            // Solo añadir si no supera el límite
+            if (getDigitCount(etDisplay.getText().toString()) < MAX_DIGITS) {
+                etDisplay.append(b.getText().toString());
+            }
         };
 
         int[] numIds = {R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 firstValue = Double.parseDouble(val);
                 Button b = (Button) v;
                 operation = b.getText().toString();
-                isNewOp = true; // La próxima vez que escriban, se limpia la pantalla
+                isNewOp = true;
             }
         };
 
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         // IGUAL (=)
         findViewById(R.id.btnEquals).setOnClickListener(v -> calculate());
 
-        // CLEAR (C) - Borra todo
+        // CLEAR (C)
         findViewById(R.id.btnC).setOnClickListener(v -> {
             etDisplay.setText("");
             firstValue = 0;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             isNewOp = true;
         });
 
-        // BORRAR (Backspace - ImageButton)
+        // BORRAR (Backspace)
         findViewById(R.id.btnBackspace).setOnClickListener(v -> {
             String text = etDisplay.getText().toString();
             if (text.length() > 0) {
@@ -91,35 +93,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // --- 4. FUNCIONES ESPECIALES (Imagen) ---
+        // --- 4. FUNCIONES ESPECIALES ---
 
-        // Raíz Cuadrada (Sqrt)
+        // Raíz Cuadrada
         findViewById(R.id.btnSqrt).setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
                 double res = Math.sqrt(Double.parseDouble(val));
-                etDisplay.setText(String.valueOf(res));
+                setResultWithLimit(res);
                 isNewOp = true;
             }
         });
 
-        // Elevado al cuadrado (x^2)
+        // Elevado al cuadrado
         findViewById(R.id.btnSquare).setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
                 double d = Double.parseDouble(val);
-                double res = Math.pow(d, 2); // Elevado a 2
-                etDisplay.setText(String.valueOf(res));
+                double res = Math.pow(d, 2);
+                setResultWithLimit(res);
                 isNewOp = true;
             }
         });
 
 
-        // --- 5. MEMORIA (M+, M-, Recuperar) ---
+        // --- 5. MEMORIA ---
 
         Button btnMPlus = findViewById(R.id.btnMPlus);
 
-        // M+ (Click corto): Suma a memoria
         btnMPlus.setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
@@ -129,14 +130,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // RECUPERAR MEMORIA (Click Largo en M+): Muestra el valor guardado
         btnMPlus.setOnLongClickListener(v -> {
-            etDisplay.setText(String.valueOf(memoryValue));
+            setResultWithLimit(memoryValue);
             isNewOp = true;
             return true;
         });
 
-        // M- (Resta de memoria)
         findViewById(R.id.btnMMinus).setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
@@ -147,7 +146,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    // Lógica matemática del botón Igual
+    // Cuenta solo los dígitos (ignora punto y signo negativo)
+    private int getDigitCount(String text) {
+        return text.replace(".", "").replace("-", "").length();
+    }
+
+    // Muestra el resultado respetando el límite de dígitos
+    private void setResultWithLimit(double result) {
+        String resultStr;
+
+        if (result == (long) result) {
+            resultStr = String.format("%d", (long) result);
+        } else {
+            resultStr = String.valueOf(result);
+        }
+
+        // Si supera el límite, truncar decimales
+        if (getDigitCount(resultStr) > MAX_DIGITS) {
+            int integerDigits = String.valueOf((long) result).replace("-", "").length();
+            int decimalPlaces = MAX_DIGITS - integerDigits;
+
+            if (decimalPlaces > 0) {
+                resultStr = String.format("%." + decimalPlaces + "f", result);
+            } else {
+                resultStr = "Error"; // Número demasiado grande
+            }
+        }
+
+        etDisplay.setText(resultStr);
+    }
+
     private void calculate() {
         String val = etDisplay.getText().toString();
         if (val.isEmpty()) return;
@@ -170,12 +198,7 @@ public class MainActivity extends AppCompatActivity {
             default: return;
         }
 
-        // Truco para quitar decimal .0 si es entero (ej: muestra 5 en vez de 5.0)
-        if (result == (long) result) {
-            etDisplay.setText(String.format("%d", (long) result));
-        } else {
-            etDisplay.setText(String.valueOf(result));
-        }
+        setResultWithLimit(result);
         isNewOp = true;
     }
 }
