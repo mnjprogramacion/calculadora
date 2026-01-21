@@ -26,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
         etDisplay = findViewById(R.id.etDisplay);
         etDisplay.setShowSoftInputOnFocus(false);
 
-        // --- 1. CONFIGURACIÓN NÚMEROS (0-9) ---
+        // --- CONFIGURACIÓN NÚMEROS (0-9) ---
         View.OnClickListener numListener = v -> {
             Button b = (Button) v;
             if (isNewOp) {
                 etDisplay.setText("");
                 isNewOp = false;
             }
-            // Solo añadir si no supera el límite
             if (getDigitCount(etDisplay.getText().toString()) < MAX_DIGITS) {
                 etDisplay.append(b.getText().toString());
             }
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         for (int id : numIds) findViewById(id).setOnClickListener(numListener);
 
 
-        // --- 2. CONFIGURACIÓN OPERACIONES BÁSICAS (+, -, X, /) ---
+        // --- OPERACIONES BÁSICAS (+, -, X, /) ---
         View.OnClickListener opListener = v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
@@ -61,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnDiv).setOnClickListener(opListener);
 
 
-        // --- 3. BOTONES DE ACCIÓN ---
+        // --- BOTONES DE ACCIÓN ---
 
         // PUNTO (.)
         findViewById(R.id.btnDot).setOnClickListener(v -> {
@@ -92,9 +91,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        // --- 4. FUNCIONES ESPECIALES ---
-
         // Raíz Cuadrada
         findViewById(R.id.btnSqrt).setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
@@ -117,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // --- 5. MEMORIA ---
+        // --- MEMORIA ---
 
         Button btnMPlus = findViewById(R.id.btnMPlus);
 
