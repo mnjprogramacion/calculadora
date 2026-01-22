@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etDisplay;
-    private static final int MAX_DIGITS = 10; // Límite de dígitos
+    private static final int MAX_DIGITS = 10;
 
     // Variables lógicas
     private double firstValue = 0;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         etDisplay = findViewById(R.id.etDisplay);
         etDisplay.setShowSoftInputOnFocus(false);
 
-        // --- CONFIGURACIÓN NÚMEROS (0-9) ---
+        // Configuración números (0-9)
         View.OnClickListener numListener = v -> {
             Button b = (Button) v;
             if (isNewOp) {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         for (int id : numIds) findViewById(id).setOnClickListener(numListener);
 
 
-        // --- OPERACIONES BÁSICAS (+, -, X, /) ---
+        // Operaciones básicas (+, -, x, ÷)
         View.OnClickListener opListener = v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
@@ -60,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnDiv).setOnClickListener(opListener);
 
 
-        // --- BOTONES DE ACCIÓN ---
+        // Botones de acción
 
-        // PUNTO (.)
+        // Punto (.)
         findViewById(R.id.btnDot).setOnClickListener(v -> {
             if (isNewOp) {
                 etDisplay.setText("0.");
@@ -72,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // IGUAL (=)
+        // Igual (=)
         findViewById(R.id.btnEquals).setOnClickListener(v -> calculate());
 
-        // CLEAR (C)
+        // Clear (C)
         findViewById(R.id.btnC).setOnClickListener(v -> {
             etDisplay.setText("");
             firstValue = 0;
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             isNewOp = true;
         });
 
-        // BORRAR (Backspace)
+        // Borrar (Backspace)
         findViewById(R.id.btnBackspace).setOnClickListener(v -> {
             String text = etDisplay.getText().toString();
             if (text.length() > 0) {
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Raíz Cuadrada
+        // Raíz cuadrada
         findViewById(R.id.btnSqrt).setOnClickListener(v -> {
             String val = etDisplay.getText().toString();
             if (!val.isEmpty()) {
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // --- MEMORIA ---
+        // Memoria
 
         Button btnMPlus = findViewById(R.id.btnMPlus);
 
@@ -182,8 +182,8 @@ public class MainActivity extends AppCompatActivity {
         switch (operation) {
             case "+": result = firstValue + secondValue; break;
             case "-": result = firstValue - secondValue; break;
-            case "X": result = firstValue * secondValue; break;
-            case "/":
+            case "x": result = firstValue * secondValue; break;
+            case "÷":
                 if (secondValue != 0) result = firstValue / secondValue;
                 else {
                     etDisplay.setText("Error");
