@@ -11,18 +11,18 @@
         android:id="@+id/etDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/display_background"
         android:focusable="false"
         android:gravity="end|center_vertical"
         android:hint="0"
-        android:textColorHint="#888888"
         android:inputType="none"
         android:lines="1"
         android:padding="28dp"
         android:textColor="#222222"
+        android:textColorHint="#888888"
         android:textSize="52sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp"/>
+        android:textStyle="bold" />
 
     <!-- Fila 1 -->
     <LinearLayout
@@ -74,15 +74,15 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#F5E7C6"
+            android:backgroundTint="#6C464F"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            app:cornerRadius="12dp"
             app:icon="@drawable/ic_sqrt"
             app:iconGravity="textStart"
-            app:iconTint="@null"
             app:iconPadding="0dp"
             app:iconSize="28dp"
-            app:cornerRadius="12dp"/>
+            app:iconTint="@null" />
 
         <Button
             android:id="@+id/btn7"
@@ -97,7 +97,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn8"
@@ -112,7 +112,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn9"
@@ -127,7 +127,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnMPlus"
@@ -135,14 +135,14 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#FA8112"
+            android:backgroundTint="#6C464F"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="M+"
-            android:textColor="#222222"
+            android:textColor="#F5E7C6"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
     <!-- Fila 3 -->
@@ -158,15 +158,15 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#F5E7C6"
+            android:backgroundTint="#6C464F"
             android:insetTop="0dp"
             android:insetBottom="0dp"
+            app:cornerRadius="12dp"
             app:icon="@drawable/ic_square"
             app:iconGravity="textStart"
-            app:iconTint="@null"
             app:iconPadding="0dp"
             app:iconSize="32dp"
-            app:cornerRadius="12dp"/>
+            app:iconTint="@null" />
 
         <Button
             android:id="@+id/btn4"
@@ -181,7 +181,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn5"
@@ -196,7 +196,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn6"
@@ -211,7 +211,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnMMinus"
@@ -219,14 +219,14 @@
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1"
-            android:backgroundTint="#FA8112"
+            android:backgroundTint="#6C464F"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="M-"
-            android:textColor="#222222"
+            android:textColor="#F5E7C6"
             android:textSize="15sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
     <!-- Fila 4 -->
@@ -248,7 +248,7 @@
             android:text="×"
             android:textColor="#222222"
             android:textSize="26sp"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn1"
@@ -263,7 +263,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn2"
@@ -278,7 +278,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn3"
@@ -293,7 +293,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnAdd"
@@ -307,7 +307,7 @@
             android:text="+"
             android:textColor="#222222"
             android:textSize="26sp"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
     <!-- Fila 5 -->
@@ -329,7 +329,7 @@
             android:text="÷"
             android:textColor="#222222"
             android:textSize="26sp"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btn0"
@@ -344,7 +344,7 @@
             android:textColor="#222222"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnDot"
@@ -359,7 +359,7 @@
             android:textColor="#222222"
             android:textSize="28sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnEquals"
@@ -374,7 +374,7 @@
             android:textColor="#222222"
             android:textSize="26sp"
             android:textStyle="bold"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
 
         <Button
             android:id="@+id/btnSub"
@@ -388,7 +388,7 @@
             android:text="-"
             android:textColor="#222222"
             android:textSize="28sp"
-            app:cornerRadius="12dp"/>
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
 </LinearLayout>
